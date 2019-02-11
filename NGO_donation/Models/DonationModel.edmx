@@ -1,0 +1,370 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DonationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_donationdetails">
+          <Key>
+            <PropertyRef Name="donationdetailid" />
+          </Key>
+          <Property Name="donationdetailid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="donationtypeid" Type="int" />
+          <Property Name="regid" Type="int" />
+          <Property Name="recurgift" Type="bit" />
+          <Property Name="quantity" Type="int" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="totalamount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_donationtype">
+          <Key>
+            <PropertyRef Name="donationtypeid" />
+          </Key>
+          <Property Name="donationtypeid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="donationname" Type="nvarchar" MaxLength="50" />
+          <Property Name="status" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_registeruserdetail">
+          <Key>
+            <PropertyRef Name="regid" />
+          </Key>
+          <Property Name="regid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="firstname" Type="nvarchar" MaxLength="50" />
+          <Property Name="lastname" Type="nvarchar" MaxLength="50" />
+          <Property Name="cma#" Type="int" />
+          <Property Name="phone" Type="varchar" MaxLength="20" />
+          <Property Name="emailid" Type="nvarchar" MaxLength="50" />
+          <Property Name="address1" Type="nvarchar" MaxLength="50" />
+          <Property Name="address2" Type="nvarchar" MaxLength="50" />
+          <Property Name="city" Type="nvarchar" MaxLength="50" />
+          <Property Name="state" Type="nvarchar" MaxLength="30" />
+          <Property Name="zipcode" Type="int" />
+          <Property Name="country" Type="nvarchar" MaxLength="30" />
+          <Property Name="urbanization" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_role">
+          <Key>
+            <PropertyRef Name="roleid" />
+          </Key>
+          <Property Name="roleid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rolename" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="tbl_user">
+          <Key>
+            <PropertyRef Name="userid" />
+          </Key>
+          <Property Name="userid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="firstname" Type="nvarchar" MaxLength="50" />
+          <Property Name="lastname" Type="nvarchar" MaxLength="50" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="20" />
+          <Property Name="roleid" Type="int" />
+          <Property Name="regid" Type="int" />
+        </EntityType>
+        <Association Name="fk_regid">
+          <End Role="tbl_registeruserdetail" Type="Self.tbl_registeruserdetail" Multiplicity="0..1" />
+          <End Role="tbl_user" Type="Self.tbl_user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_registeruserdetail">
+              <PropertyRef Name="regid" />
+            </Principal>
+            <Dependent Role="tbl_user">
+              <PropertyRef Name="regid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_donationdetails_tbl_registeruserdetail">
+          <End Role="tbl_registeruserdetail" Type="Self.tbl_registeruserdetail" Multiplicity="0..1" />
+          <End Role="tbl_donationdetails" Type="Self.tbl_donationdetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_registeruserdetail">
+              <PropertyRef Name="regid" />
+            </Principal>
+            <Dependent Role="tbl_donationdetails">
+              <PropertyRef Name="regid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_donationtype_tbl_donationdetails">
+          <End Role="tbl_donationtype" Type="Self.tbl_donationtype" Multiplicity="0..1" />
+          <End Role="tbl_donationdetails" Type="Self.tbl_donationdetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_donationtype">
+              <PropertyRef Name="donationtypeid" />
+            </Principal>
+            <Dependent Role="tbl_donationdetails">
+              <PropertyRef Name="donationtypeid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_role_tbl_user">
+          <End Role="tbl_role" Type="Self.tbl_role" Multiplicity="0..1" />
+          <End Role="tbl_user" Type="Self.tbl_user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_role">
+              <PropertyRef Name="roleid" />
+            </Principal>
+            <Dependent Role="tbl_user">
+              <PropertyRef Name="roleid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DonationModelStoreContainer">
+          <EntitySet Name="tbl_donationdetails" EntityType="Self.tbl_donationdetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_donationtype" EntityType="Self.tbl_donationtype" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_registeruserdetail" EntityType="Self.tbl_registeruserdetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_role" EntityType="Self.tbl_role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_user" EntityType="Self.tbl_user" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_regid" Association="Self.fk_regid">
+            <End Role="tbl_registeruserdetail" EntitySet="tbl_registeruserdetail" />
+            <End Role="tbl_user" EntitySet="tbl_user" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_donationdetails_tbl_registeruserdetail" Association="Self.FK_tbl_donationdetails_tbl_registeruserdetail">
+            <End Role="tbl_registeruserdetail" EntitySet="tbl_registeruserdetail" />
+            <End Role="tbl_donationdetails" EntitySet="tbl_donationdetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_donationtype_tbl_donationdetails" Association="Self.FK_tbl_donationtype_tbl_donationdetails">
+            <End Role="tbl_donationtype" EntitySet="tbl_donationtype" />
+            <End Role="tbl_donationdetails" EntitySet="tbl_donationdetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_role_tbl_user" Association="Self.FK_tbl_role_tbl_user">
+            <End Role="tbl_role" EntitySet="tbl_role" />
+            <End Role="tbl_user" EntitySet="tbl_user" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DonationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbl_donationdetails">
+          <Key>
+            <PropertyRef Name="donationdetailid" />
+          </Key>
+          <Property Name="donationdetailid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="donationtypeid" Type="Int32" />
+          <Property Name="regid" Type="Int32" />
+          <Property Name="recurgift" Type="Boolean" />
+          <Property Name="quantity" Type="Int32" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="totalamount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbl_registeruserdetail" Relationship="Self.FK_tbl_donationdetails_tbl_registeruserdetail" FromRole="tbl_donationdetails" ToRole="tbl_registeruserdetail" />
+          <NavigationProperty Name="tbl_donationtype" Relationship="Self.FK_tbl_donationtype_tbl_donationdetails" FromRole="tbl_donationdetails" ToRole="tbl_donationtype" />
+        </EntityType>
+        <EntityType Name="tbl_donationtype">
+          <Key>
+            <PropertyRef Name="donationtypeid" />
+          </Key>
+          <Property Name="donationtypeid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="donationname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="Boolean" />
+          <NavigationProperty Name="tbl_donationdetails" Relationship="Self.FK_tbl_donationtype_tbl_donationdetails" FromRole="tbl_donationtype" ToRole="tbl_donationdetails" />
+        </EntityType>
+        <EntityType Name="tbl_registeruserdetail">
+          <Key>
+            <PropertyRef Name="regid" />
+          </Key>
+          <Property Name="regid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cma_" Type="Int32" />
+          <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="emailid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="address1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="address2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="state" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="zipcode" Type="Int32" />
+          <Property Name="country" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="urbanization" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_donationdetails" Relationship="Self.FK_tbl_donationdetails_tbl_registeruserdetail" FromRole="tbl_registeruserdetail" ToRole="tbl_donationdetails" />
+          <NavigationProperty Name="tbl_user" Relationship="DonationModel.fk_regid" FromRole="tbl_registeruserdetail" ToRole="tbl_user" />
+        </EntityType>
+        <EntityType Name="tbl_role">
+          <Key>
+            <PropertyRef Name="roleid" />
+          </Key>
+          <Property Name="roleid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rolename" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_user" Relationship="Self.FK_tbl_role_tbl_user" FromRole="tbl_role" ToRole="tbl_user" />
+        </EntityType>
+        <EntityType Name="tbl_user">
+          <Key>
+            <PropertyRef Name="userid" />
+          </Key>
+          <Property Name="userid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="roleid" Type="Int32" />
+          <NavigationProperty Name="tbl_role" Relationship="Self.FK_tbl_role_tbl_user" FromRole="tbl_user" ToRole="tbl_role" />
+          <Property Name="regid" Type="Int32" />
+          <NavigationProperty Name="tbl_registeruserdetail" Relationship="DonationModel.fk_regid" FromRole="tbl_user" ToRole="tbl_registeruserdetail" />
+        </EntityType>
+        <Association Name="FK_tbl_donationdetails_tbl_registeruserdetail">
+          <End Role="tbl_registeruserdetail" Type="Self.tbl_registeruserdetail" Multiplicity="0..1" />
+          <End Role="tbl_donationdetails" Type="Self.tbl_donationdetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_registeruserdetail">
+              <PropertyRef Name="regid" />
+            </Principal>
+            <Dependent Role="tbl_donationdetails">
+              <PropertyRef Name="regid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_donationtype_tbl_donationdetails">
+          <End Role="tbl_donationtype" Type="Self.tbl_donationtype" Multiplicity="0..1" />
+          <End Role="tbl_donationdetails" Type="Self.tbl_donationdetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_donationtype">
+              <PropertyRef Name="donationtypeid" />
+            </Principal>
+            <Dependent Role="tbl_donationdetails">
+              <PropertyRef Name="donationtypeid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_role_tbl_user">
+          <End Role="tbl_role" Type="Self.tbl_role" Multiplicity="0..1" />
+          <End Role="tbl_user" Type="Self.tbl_user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_role">
+              <PropertyRef Name="roleid" />
+            </Principal>
+            <Dependent Role="tbl_user">
+              <PropertyRef Name="roleid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DonationEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_donationdetails" EntityType="Self.tbl_donationdetails" />
+          <EntitySet Name="tbl_donationtype" EntityType="Self.tbl_donationtype" />
+          <EntitySet Name="tbl_registeruserdetail" EntityType="Self.tbl_registeruserdetail" />
+          <EntitySet Name="tbl_role" EntityType="Self.tbl_role" />
+          <EntitySet Name="tbl_user" EntityType="Self.tbl_user" />
+          <AssociationSet Name="FK_tbl_donationdetails_tbl_registeruserdetail" Association="Self.FK_tbl_donationdetails_tbl_registeruserdetail">
+            <End Role="tbl_registeruserdetail" EntitySet="tbl_registeruserdetail" />
+            <End Role="tbl_donationdetails" EntitySet="tbl_donationdetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_donationtype_tbl_donationdetails" Association="Self.FK_tbl_donationtype_tbl_donationdetails">
+            <End Role="tbl_donationtype" EntitySet="tbl_donationtype" />
+            <End Role="tbl_donationdetails" EntitySet="tbl_donationdetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_role_tbl_user" Association="Self.FK_tbl_role_tbl_user">
+            <End Role="tbl_role" EntitySet="tbl_role" />
+            <End Role="tbl_user" EntitySet="tbl_user" />
+          </AssociationSet>
+          <AssociationSet Name="fk_regid" Association="DonationModel.fk_regid">
+            <End Role="tbl_registeruserdetail" EntitySet="tbl_registeruserdetail" />
+            <End Role="tbl_user" EntitySet="tbl_user" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="fk_regid">
+          <End Type="DonationModel.tbl_registeruserdetail" Role="tbl_registeruserdetail" Multiplicity="0..1" />
+          <End Type="DonationModel.tbl_user" Role="tbl_user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_registeruserdetail">
+              <PropertyRef Name="regid" />
+            </Principal>
+            <Dependent Role="tbl_user">
+              <PropertyRef Name="regid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DonationModelStoreContainer" CdmEntityContainer="DonationEntities">
+          <EntitySetMapping Name="tbl_donationdetails">
+            <EntityTypeMapping TypeName="DonationModel.tbl_donationdetails">
+              <MappingFragment StoreEntitySet="tbl_donationdetails">
+                <ScalarProperty Name="donationdetailid" ColumnName="donationdetailid" />
+                <ScalarProperty Name="donationtypeid" ColumnName="donationtypeid" />
+                <ScalarProperty Name="regid" ColumnName="regid" />
+                <ScalarProperty Name="recurgift" ColumnName="recurgift" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="totalamount" ColumnName="totalamount" />
+                <ScalarProperty Name="date" ColumnName="date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_donationtype">
+            <EntityTypeMapping TypeName="DonationModel.tbl_donationtype">
+              <MappingFragment StoreEntitySet="tbl_donationtype">
+                <ScalarProperty Name="donationtypeid" ColumnName="donationtypeid" />
+                <ScalarProperty Name="donationname" ColumnName="donationname" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_registeruserdetail">
+            <EntityTypeMapping TypeName="DonationModel.tbl_registeruserdetail">
+              <MappingFragment StoreEntitySet="tbl_registeruserdetail">
+                <ScalarProperty Name="regid" ColumnName="regid" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="cma_" ColumnName="cma#" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="emailid" ColumnName="emailid" />
+                <ScalarProperty Name="address1" ColumnName="address1" />
+                <ScalarProperty Name="address2" ColumnName="address2" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="zipcode" ColumnName="zipcode" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="urbanization" ColumnName="urbanization" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_role">
+            <EntityTypeMapping TypeName="DonationModel.tbl_role">
+              <MappingFragment StoreEntitySet="tbl_role">
+                <ScalarProperty Name="roleid" ColumnName="roleid" />
+                <ScalarProperty Name="rolename" ColumnName="rolename" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_user">
+            <EntityTypeMapping TypeName="DonationModel.tbl_user">
+              <MappingFragment StoreEntitySet="tbl_user">
+                <ScalarProperty Name="regid" ColumnName="regid" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="roleid" ColumnName="roleid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

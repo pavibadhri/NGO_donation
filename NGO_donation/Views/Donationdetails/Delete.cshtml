@@ -1,0 +1,80 @@
+﻿@model NGO_donation.Models.tbl_donationdetails
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>tbl_donationdetails</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.recurgift)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.recurgift)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.totalamount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.totalamount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_registeruserdetail.firstname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_registeruserdetail.firstname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_donationtype.donationname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_donationtype.donationname)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

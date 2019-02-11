@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="25fd2255c9f646a394127014571a0ed4" Name="Diagram1">
+        <EntityTypeShape EntityType="DonationModel.tbl_donationdetails" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DonationModel.tbl_donationtype" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DonationModel.tbl_registeruserdetail" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DonationModel.tbl_role" Width="1.5" PointX="2.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DonationModel.tbl_user" Width="1.5" PointX="5" PointY="5" IsExpanded="true" />
+        <AssociationConnector Association="DonationModel.FK_tbl_donationdetails_tbl_registeruserdetail" ManuallyRouted="false" />
+        <AssociationConnector Association="DonationModel.FK_tbl_donationtype_tbl_donationdetails" ManuallyRouted="false" />
+        <AssociationConnector Association="DonationModel.FK_tbl_role_tbl_user" ManuallyRouted="false" />
+        <AssociationConnector Association="DonationModel.fk_regid" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
