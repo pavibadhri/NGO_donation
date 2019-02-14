@@ -11,7 +11,8 @@ namespace NGO_donation.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class tbl_registeruserdetail
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,11 +23,30 @@ namespace NGO_donation.Models
         }
     
         public int regid { get; set; }
+
+        [Required(ErrorMessage = "Enter your First Name")]
+        [StringLength(50)]
         public string firstname { get; set; }
+
+        [StringLength(50)]
+        [Required(ErrorMessage = "Enter your Last Name")]
         public string lastname { get; set; }
+
+        [Required(ErrorMessage = "Enter your CMA Number")]
         public Nullable<int> cma_ { get; set; }
+
+        [DataType(DataType.PhoneNumber)]
+        [Required(ErrorMessage = "Enter your Phone Number")]
+        [StringLength(10, ErrorMessage = "The Phone must contains 10 characters", MinimumLength = 10)]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$",
+                   ErrorMessage = "Entered phone format is not valid.")]
         public string phone { get; set; }
+
+        [Required(ErrorMessage = "Enter your Email Address")]
+        [RegularExpression(@"^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$",
+        ErrorMessage = "Please Enter Correct Email Address")]
         public string emailid { get; set; }
+
         public string address1 { get; set; }
         public string address2 { get; set; }
         public string city { get; set; }

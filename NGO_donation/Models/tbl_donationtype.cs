@@ -23,7 +23,10 @@ namespace NGO_donation.Models
         public int donationtypeid { get; set; }
         public string donationname { get; set; }
         public Nullable<bool> status { get; set; }
-    
+        public Boolean recurringgift { get; set; }
+        public decimal donationamount { get; set; }
+        public int donationdetailid { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_donationdetails> tbl_donationdetails { get; set; }
     }

@@ -1,0 +1,91 @@
+﻿@model IEnumerable<NGO_donation.Models.tbl_donationdetails>
+
+@{
+    ViewBag.Title = "GetOrderSummary";
+}
+
+<h2>Order Summary</h2>
+
+@using (Html.BeginForm("EmptyCart", "Donationtype", FormMethod.Post))
+{
+    <table class="table">
+        <tr>
+            <th>
+                @*@Html.DisplayNameFor(model => model.recurgift)*@
+                @Html.DisplayName("ITEM DESCRIPTION")
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.quantity)*@
+                @Html.DisplayName("QUANTITY")
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.price)*@
+                @Html.DisplayName("PRICE")
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.totalamount)*@
+                @Html.DisplayName("TOTAL")
+            </th>
+        </tr>
+        @if (Model == null)
+        {
+            <tr>
+                <td>
+                    @ViewData["Empty"]
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+        }
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tbl_donationtype.donationname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.quantity)
+                        @Html.ActionLink("Remove", "Removequantity", new { id = item.donationdetailid })
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.totalamount)
+                    </td>
+                </tr>
+
+            }
+        }
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                @if (ViewData["Totalamount"] != null)
+                {
+                    <label>Payment Amount:</label>@ViewData["Totalamount"]
+                }
+            </td>
+        </tr>
+        @if (Model != null && Model.Any())
+        {
+            @Html.ActionLink("Empty Cart", "EmptyCart", new { id = Model.First().regid })
+        }|
+        @if (Model != null && Model.Any())
+        {
+            @Html.ActionLink("Update Cart", "DonationAmount", new { id = Model.First().regid })
+        }
+        |
+        @if (Model != null)
+        {
+            @Html.ActionLink("Proceed to Checkout", "SendMail", new { id = Model.First().regid })
+        }
+
+    </table>
+}
+

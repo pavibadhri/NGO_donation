@@ -140,6 +140,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DonationtypeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ReguserController.cs" />
     <Compile Include="Controllers\DonationdetailsController.cs" />
@@ -232,10 +233,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Donationdetails\Create.cshtml" />
-    <Content Include="Views\Donationdetails\Delete.cshtml" />
-    <Content Include="Views\Donationdetails\Details.cshtml" />
-    <Content Include="Views\Donationdetails\Edit.cshtml" />
     <Content Include="Views\Donationdetails\Index.cshtml" />
     <Content Include="Views\Reguser\Index.cshtml" />
     <Content Include="Views\Reguser\_ViewStart.cshtml" />
@@ -245,6 +242,12 @@
     <Content Include="Views\UserManage\Details.cshtml" />
     <Content Include="Views\UserManage\Edit.cshtml" />
     <Content Include="Views\UserManage\Index.cshtml" />
+    <Content Include="Views\Reguser\Create.cshtml" />
+    <Content Include="Views\Donationtype\Index.cshtml" />
+    <Content Include="Views\Donationtype\DonationAmount.cshtml" />
+    <Content Include="Views\Donationtype\GetOrderSummary.cshtml" />
+    <Content Include="Views\Donationtype\SendMail.cshtml" />
+    <Content Include="Views\Shared\_header.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

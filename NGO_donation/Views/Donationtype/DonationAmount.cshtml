@@ -1,0 +1,54 @@
+﻿@model IList<NGO_donation.Models.tbl_donationtype>
+
+@{
+    Layout = null;
+}
+
+<h2>GIFTS</h2>
+@using (Html.BeginForm("DonationAmount", "Donationtype", FormMethod.Post))
+{
+
+
+    <table style="width:1000px">
+        <tr>
+            <th>
+                @Html.DisplayName("Check for Monthly")
+                @Html.DisplayName("Recurring Gift")
+            </th>
+        </tr>
+
+        <tr>
+            @foreach (var item in Model)
+            {
+                for (int i = 0; i < Model.Count; i++)
+                {
+                    @Html.HiddenFor(model => Model[i].donationtypeid, new { item.donationtypeid })
+                }
+            }
+
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <td style="display: block;width:300px;">
+                    @Html.DisplayFor(modelItem => Model[i].donationname) $
+                </td>
+                <td style="vertical-align: top; display: inline-block; text-align: left; width: 300px;">@Html.TextBoxFor(model => Model[i].donationamount)</td>
+
+                <td style="vertical-align: top; display: inline-block; ">
+                    @Html.CheckBoxFor(model => Model[i].recurringgift)
+                </td>
+
+             }
+
+</table>
+
+    <div class="form-group">
+        <div class="col-md-offset-2" style="margin-left:250px;">
+            <input type="button" value="CANCEL" class="btn btn-default" onclick="location.href='@Url.Action("Create", "Reguser")';" />
+
+            @*<div class="col-md-offset-2 col-md-10">*@
+            <input type="submit" value="CONTINUE" class="btn btn-default" />
+            @*</div>*@
+        </div>
+    </div>
+}
+

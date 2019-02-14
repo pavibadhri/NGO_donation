@@ -1,0 +1,33 @@
+﻿<!doctype html>
+
+<header style="background-color:gainsboro">
+    <h4>
+        NGO
+        <div style="text-align:right">
+            @if (Session["firstname"] != null)
+            {
+                <label>
+                    @Session["firstname"]
+                </label>
+            }
+            @if (Session["lastname"] != null)
+            {
+                <label>
+                    @Session["lastname"]
+                </label>
+            }
+            (
+            @if (Session["role"] != null)
+            {
+                <label>
+                    @Session["role"]
+                </label>
+            }
+            )
+            @Html.ActionLink("Log out", "Index", "Home")
+        </div>
+    </h4>
+</header>
+
+
+

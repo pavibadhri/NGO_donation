@@ -1,0 +1,143 @@
+﻿@model NGO_donation.Models.tbl_registeruserdetail
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h4>PERSONAL INFORMATION</h4>
+
+@using (Html.BeginForm())
+{
+
+    <div class="form-horizontal">
+        @*<h4>tbl_registeruserdetail</h4>*@
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.Label("firstname", "FIRST NAME", new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(model => model.firstname, new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.firstname)
+                @Html.ValidationMessageFor(model => model.firstname)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("lastname", "LAST NAME", new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(model => model.lastname, new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.lastname)
+                @Html.ValidationMessageFor(model => model.lastname)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("cma_", "CMA #", new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(model => model.cma_, new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.cma_)
+                @Html.ValidationMessageFor(model => model.cma_)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("phone", "PHONE", new { @class = "control-label col-md-2" })
+            @* @Html.LabelFor(model => model.phone, new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.phone)
+                @Html.ValidationMessageFor(model => model.phone)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.emailid, new { @class = "control-label col-md-2" })*@
+            @Html.Label("emailid", "EMAIL ADDRESS", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.emailid)
+                @Html.ValidationMessageFor(model => model.emailid)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.address1, new { @class = "control-label col-md-2" })*@
+            @Html.Label("address1", "ADDRESS 1", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.address1)
+                @Html.ValidationMessageFor(model => model.address1)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("address2", "ADDRESS 2", new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(model => model.address2, new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.address2)
+                @Html.ValidationMessageFor(model => model.address2)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("city", "CITY", new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(model => model.city, new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.city)
+                @Html.ValidationMessageFor(model => model.city)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("state", "STATE", new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(model => model.state, new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.state)
+                @Html.ValidationMessageFor(model => model.state)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("zipcode", "ZIP/POSTAL CODE", new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(model => model.zipcode, new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.zipcode)
+                @Html.ValidationMessageFor(model => model.zipcode)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("country", "COUNTRY", new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(model => model.country, new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.country)
+                @Html.ValidationMessageFor(model => model.country)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("urbanization", "URBANIZATION", new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(model => model.urbanization, new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.urbanization)
+                @Html.ValidationMessageFor(model => model.urbanization)
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="form-group">
+            <div class="col-md-offset-2 ">
+                <input type="button" value="CANCEL" class="btn btn-default" onclick="location.href='@Url.Action("Index","Reguser")';" />
+
+                @*<div class="col-md-offset-2 col-md-10">*@
+                <input type="submit" value="CONTINUE" class="btn btn-default" />
+                @*</div>*@
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+
