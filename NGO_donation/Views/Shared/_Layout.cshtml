@@ -6,34 +6,25 @@
     <title>@ViewBag.Title - NGO Donation</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    @Html.Partial("_header")
+    <header style="background-color: #dff0d8;">
+
+        <div>
+            <p style="margin-left:10px;float:left;font-size:large;font-family:'Times New Roman', Times, serif;font-style:italic;font-weight:bold;font-stretch:wider;">
+                NGO<img src="~/Content/ImgDonate.jpg" style="width:100px;" />Helping Hands are better than Praying Lips!
+            </p>
+            <p style="text-align:right">
+                <img src="~/Content/UserIcon.png" style="width:50px" />
+            </p>
+        </div>
+    </header>
 </head>
 <body>
-     <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("NGO Donation", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("User Management", "Index", "UserManage")</li>
-                    <li>@Html.ActionLink("Donation Management", "Index", "Donationdetails")</li>
-                    <li>@Html.ActionLink("User View", "Index", "UserManage")</li>
-                </ul>
-            </div>
-        </div>
-    </div>
 
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - NGO Donation Application</p>
         </footer>
     </div>
 

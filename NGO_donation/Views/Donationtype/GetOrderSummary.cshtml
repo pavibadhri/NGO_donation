@@ -124,11 +124,11 @@
                 }
             </td>
         </tr>
-        @*@if (Model != null && Model.Any())
+        @if (Model == null)
                {
-                    @Html.ActionLink("Empty Cart", "EmptyCart" ,new { id=Model.First().regid})
-               }|
-            @if (Model != null && Model.Any())
+                    @Html.ActionLink("Enter Amount", "DonationAmount")
+               }
+            @*@if (Model != null && Model.Any())
                {
                     @Html.ActionLink("Update Cart", "DonationAmount", new { id = Model.First().regid })
             }*@
