@@ -1,21 +1,45 @@
 ﻿@model IList<NGO_donation.Models.tbl_donationtype>
 
-@{
-    Layout = null;
-}
+@*@{
+        Layout = null;
+    }*@
 
-<h2>GIFTS</h2>
+<h2 style="color:blueviolet;">GIFTS</h2>
+
+<style type="text/css">
+    .btn-black {
+        background-color: #000;
+        color: #FFF;
+    }
+
+        .btn-black:hover {
+            color: #FFF;
+        }
+
+    .hrtt {
+        style ="margin-left: 300px;";
+    }
+
+    .hover {
+        color: red;
+    }
+
+    .barcode {
+        white-space: pre;
+    }
+</style>
+
+<span class="barcode"><font size="2">                               @Html.DisplayName("Check for Monthly") @Html.DisplayName("Recurring Gift")</font></span>
+
 @using (Html.BeginForm("DonationAmount", "Donationtype", FormMethod.Post))
 {
-
-
-    <table style="width:1000px">
-        <tr>
-            <th>
-                @Html.DisplayName("Check for Monthly")
-                @Html.DisplayName("Recurring Gift")
-            </th>
-        </tr>
+    <table>
+        @*<tr>
+                <th>
+                    @Html.DisplayName("Check for Monthly")
+                    @Html.DisplayName("Recurring Gift")
+                </th>
+            </tr>*@
 
         <tr>
             @foreach (var item in Model)
@@ -24,6 +48,10 @@
                 {
                     @Html.HiddenFor(model => Model[i].donationtypeid, new { item.donationtypeid })
                 }
+                for (int i = 0; i < Model.Count; i++)
+                {
+                    @Html.HiddenFor(model => Model[i].donationdetailid, new { item.donationdetailid })
+                }
             }
 
             @for (int i = 0; i < Model.Count; i++)
@@ -31,22 +59,22 @@
                 <td style="display: block;width:300px;">
                     @Html.DisplayFor(modelItem => Model[i].donationname) $
                 </td>
-                <td style="vertical-align: top; display: inline-block; text-align: left; width: 300px;">@Html.TextBoxFor(model => Model[i].donationamount)</td>
+                <td style="vertical-align: top; display: inline-block; text-align: left; width: 200px;">@Html.TextBoxFor(model => Model[i].donationamount)</td>
 
                 <td style="vertical-align: top; display: inline-block; ">
                     @Html.CheckBoxFor(model => Model[i].recurringgift)
                 </td>
 
-             }
+            }
 
 </table>
 
     <div class="form-group">
-        <div class="col-md-offset-2" style="margin-left:250px;">
-            <input type="button" value="CANCEL" class="btn btn-default" onclick="location.href='@Url.Action("Create", "Reguser")';" />
+        <div class="col-md-offset-2" style="margin-left:70px;">
+            <input type="button" value="CANCEL" class="btn btn-default" style="color: white; background-color: blueviolet;" onclick="location.href='@Url.Action("Create", "Reguser")';" />
 
             @*<div class="col-md-offset-2 col-md-10">*@
-            <input type="submit" value="CONTINUE" class="btn btn-default" />
+            <input type="submit" value="CONTINUE" class="btn btn-default" style="color: white; background-color: blueviolet;" />
             @*</div>*@
         </div>
     </div>

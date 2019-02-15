@@ -22,26 +22,28 @@ namespace NGO_donation.Controllers
 
         public ActionResult DonationAmount(int? id)
         {
-            var query = db.tbl_donationdetails.ToList();
+            int regid = 0;
             IList<tbl_donationtype> model = new List<tbl_donationtype>();
 
+            if (Session["RegId"] != null)
+            {
+                regid = Convert.ToInt32(Session["RegId"].ToString());
+
+            }
+            var query = db.tbl_donationdetails.Where(m => m.regid == regid).ToList();
             foreach (var data in query)
             {
-                if (query.Any(m => m.regid == id))
+                var temp = from m in db.tbl_donationtype where m.donationtypeid == data.donationtypeid select m.donationname;
+                string don_name = temp.SingleOrDefault();
+                var type_donation = new tbl_donationtype()
                 {
-                    var temp = from m in db.tbl_donationtype where m.donationtypeid == data.donationtypeid select m.donationname;
-                    string don_name = temp.SingleOrDefault();
-                    var type_donation = new tbl_donationtype()
-                    {
-                        donationdetailid = data.donationdetailid,
-                        donationamount = Convert.ToDecimal(data.price),
-                        recurringgift = Convert.ToBoolean(data.recurgift),
-                        donationname = don_name
-                    };
-                    model.Add(type_donation);
-                }
+                    donationdetailid = data.donationdetailid,
+                    donationamount = Convert.ToDecimal(data.price),
+                    recurringgift = Convert.ToBoolean(data.recurgift),
+                    donationname = don_name
+                };
+                model.Add(type_donation);
             }
-            
             if (model.Count == 0)
                 return View(db.tbl_donationtype.ToList());
             else
@@ -51,7 +53,6 @@ namespace NGO_donation.Controllers
         [HttpPost]
         public ActionResult DonationAmount(tbl_donationtype[] model)
         {
-
             tbl_donationdetails details = new tbl_donationdetails();
             if (model != null)
             {
@@ -72,7 +73,7 @@ namespace NGO_donation.Controllers
                             details.quantity = 1;
                         details.price = Convert.ToDecimal(data.donationamount);
                         details.totalamount = Convert.ToDecimal(data.donationamount * details.quantity);
-                        details.date = DateTime.Now;
+                        details.date = System.DateTime.Now;
                         db.tbl_donationdetails.Add(details);
                         db.SaveChanges();
                     }
@@ -85,11 +86,13 @@ namespace NGO_donation.Controllers
                             querydata.quantity = 1;
                         querydata.price = Convert.ToDecimal(data.donationamount);
                         querydata.totalamount = Convert.ToDecimal(data.donationamount * querydata.quantity);
-                        querydata.date = DateTime.Now;
+                        querydata.date = System.DateTime.Now;
                         db.Entry(querydata).State = EntityState.Modified;
                         db.SaveChanges();
                     }
+
                 }
+
                 return RedirectToAction("GetOrderSummary", "Donationtype");
             }
             return View(model);
@@ -118,7 +121,15 @@ namespace NGO_donation.Controllers
             }
             db.tbl_donationdetails.Remove(tbl_donationdetails);
             db.SaveChanges();
-            return View("GetOrderSummary", db.tbl_donationdetails.ToList());
+            int regid = Convert.ToInt32(Session["RegId"].ToString());
+            var query = db.tbl_donationdetails.Where(m => m.regid == regid).ToList();
+            decimal sum = 0;
+            for (int i = 0; i < query.Count; i++)
+            {
+                sum = sum + Convert.ToDecimal(query[i].totalamount);
+            }
+            ViewData["Totalamount"] = sum;
+            return View("GetOrderSummary", query);
         }
 
         public ActionResult EmptyCart(int? id)

@@ -7,13 +7,14 @@
 
     @Html.Partial("_header")
 
-
+    
 </head>
 <body>
     <div class="col-md-3" style="">
         <div class="list-group">
-            <a href="~/Reguser/Index" class="list-group-item list-group-item-action" style="background-color:#dff0d8"> Event Management </a>
-            <a href="~/Reguser/Index" class="list-group-item list-group-item-action" style="background-color:#dff0d8"> User View </a>
+            <a href="~/UserManage/Index" class="list-group-item list-group-item-actions" style="background-color:#dff0d8;"> User Management </a>
+            <a href="~/Donationdetails/Index" class="list-group-item list-group-item-action" style="background-color:#dff0d8"> Donation Management </a>
+            @*<a href="~/UserManage/Index" class="list-group-item list-group-item-action" style="background-color:#dff0d8"> User View </a>*@
         </div>
     </div>
 
@@ -21,7 +22,7 @@
 
 
     <div class="col-lg-offset-3">@RenderBody()</div>
-
+    
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous" style=""></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous" style=""></script>
@@ -42,7 +43,4 @@
 
 </body>
 </html>
-
-
-
 

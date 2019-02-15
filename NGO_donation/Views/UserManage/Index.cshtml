@@ -1,68 +1,113 @@
-﻿@model PagedList.IPagedList<NGO_donation.Models.tbl_user>
-@using PagedList.Mvc;
-<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+﻿@model IEnumerable<NGO_donation.Models.tbl_user>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>User Management</h2>
+@*<!doctype html>
+    <html>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+    <head>
 
-@using (Html.BeginForm("Index", "UserManage", FormMethod.Get))
-{
-    <p>
-        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
-        <input type="submit" value="Search" />
-    </p>
-}
+        <meta name="viewport" content="width-device-width" />
+        <title>User Management</title>
+    </head></html>*@
+<body>
+    <h2 style="background-color:gainsboro">User Management</h2>
+    <h4 style="float:right;margin-right:10px">
+        <b>
+            @Html.ActionLink("Add User", "Create")
+            <img src="~/Content/ImgAddUser.jpg" style="width:30px" />
+        </b>
+    </h4>
+    <table class="table" border="1">
+        <tr bgcolor="black">
+            <th style="color:white">
+                FirstName
+            </th>
+            <th style="color:white">
+                LastName
+            </th>
+            <th style="color:white">
+                Email
+            </th>
+            <th style="color:white">
+                Role
+            </th>
+            <th style="color:white">
 
-<table class="table">
-    <tr>
-        <th>
-            First Name
-        </th>
-        <th>
-            @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
-        </th>
-        <th>
-            Email
-        </th>
-        <th>
-            Role
-        </th>
-        <th></th>
-    </tr>
+            </th>
+            <th style="color:white">
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.firstname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.lastname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.tbl_role.rolename)
-            </td>
-
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.userid }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.userid })
-            </td>
+            </th>
         </tr>
-    }
+        @*        @{var rowColor = "#D9E6C4"; }
+            @foreach (var item in Model)
+            {
+                <tr style="background-color:@rowColor;">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.firstname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.lastname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.email)
+                    </td>
 
-</table>
-<br />
-Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tbl_role.rolename)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.userid })
 
-@Html.PagedListPager(Model, page => Url.Action("Index",
-    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                    </td>
+                    <td>
+                        @Html.ActionLink("Delete", "Delete", new { id = item.userid })
+
+                    </td>
+
+                </tr>
+                if (@rowColor.Equals("#D9E6C4"))
+                {
+                    @rowColor= "#ffffff";
+                }
+                else
+                {
+                    @rowColor= "#D9E6C4";
+                }
+             }*@
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.firstname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.lastname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.email)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.tbl_role.rolename)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.userid })
+
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.userid })
+
+                </td>
+
+            </tr>
+
+        }
+
+
+    </table>
+</body>
+

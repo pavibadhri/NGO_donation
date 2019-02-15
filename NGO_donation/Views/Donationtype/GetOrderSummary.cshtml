@@ -4,28 +4,50 @@
     ViewBag.Title = "GetOrderSummary";
 }
 
-<h2>Order Summary</h2>
+<h3 style="padding-top: 6px; height: 40px; color: white; background-color: coral; text-align: center;">OrderSummary</h3>
 
-@using (Html.BeginForm("EmptyCart", "Donationtype", FormMethod.Post))
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+@using (Html.BeginForm("EmptyCart", "User", FormMethod.Post))
 {
-    <table class="table">
+    <table class="table" style="border:1px solid black;">
         <tr>
             <th>
-                @*@Html.DisplayNameFor(model => model.recurgift)*@
-                @Html.DisplayName("ITEM DESCRIPTION")
+                <div style="font-family: sans-serif; font-size: initial; font-weight: underline; font-style: italic;">
+                    @*@Html.DisplayNameFor(model => model.recurgift)*@
+                    @Html.DisplayName("ITEM DESCRIPTION")
+                </div>
+
             </th>
             <th>
-                @*@Html.DisplayNameFor(model => model.quantity)*@
-                @Html.DisplayName("QUANTITY")
+                <div style="font-family: sans-serif; font-size: initial; font-weight: underline; font-style: italic;margin-left:166px;">
+                    @*@Html.DisplayNameFor(model => model.quantity)*@
+                    @Html.DisplayName("QUANTITY")
+                </div>
             </th>
             <th>
-                @*@Html.DisplayNameFor(model => model.price)*@
-                @Html.DisplayName("PRICE")
+                <div style="font-family: sans-serif; font-size: initial; font-weight: underline; font-style: italic;">
+                    @*@Html.DisplayNameFor(model => model.price)*@
+                    @Html.DisplayName("PRICE")
+                </div>
             </th>
             <th>
-                @*@Html.DisplayNameFor(model => model.totalamount)*@
-                @Html.DisplayName("TOTAL")
+                <div style="font-family: sans-serif; font-size: initial; font-weight: underline; font-style: italic;">
+                    @*@Html.DisplayNameFor(model => model.totalamount)*@
+                    @Html.DisplayName("TOTAL")
+                </div>
             </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tbl_registeruserdetail.firstname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tbl_donationtype.donationname)
+                </th>
+                <th></th>*@
         </tr>
         @if (Model == null)
         {
@@ -44,22 +66,52 @@
             foreach (var item in Model)
             {
                 <tr>
-                    <td>
+                    <td style="font-family: verdana sans-serif; font-weight: bolder; font-size: 15px; color: green; ">
                         @Html.DisplayFor(modelItem => item.tbl_donationtype.donationname)
                     </td>
-                    <td>
+                    <td class="colorquantity">
                         @Html.DisplayFor(modelItem => item.quantity)
-                        @Html.ActionLink("Remove", "Removequantity", new { id = item.donationdetailid })
+                        <div style="display: block; color: black; font-weight: bolder;">
+                            @Html.ActionLink("Remove", "Removequantity", new { id = item.donationdetailid, htmlAttributes = new { style = "color:red" } })
+                        </div>
+
+
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.price)
                     </td>
                     <td>
+
                         @Html.DisplayFor(modelItem => item.totalamount)
                     </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tbl_registeruserdetail.firstname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tbl_donationtype.donationname)
+                        </td>*@
+
                 </tr>
 
             }
+            <tr>
+                <td>
+                    @if (Model != null && Model.Any())
+                    {
+                        @Html.ActionLink("Empty Cart", "EmptyCart", new { id = Model.First().regid })
+                    }
+                    @if (Model != null && Model.Any())
+                    {
+                        @Html.ActionLink("Update Cart", "DonationAmount", new { id = Model.First().regid })
+                    }
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
         }
         <tr>
             <td></td>
@@ -72,15 +124,15 @@
                 }
             </td>
         </tr>
-        @if (Model != null && Model.Any())
-        {
-            @Html.ActionLink("Empty Cart", "EmptyCart", new { id = Model.First().regid })
-        }|
-        @if (Model != null && Model.Any())
-        {
-            @Html.ActionLink("Update Cart", "DonationAmount", new { id = Model.First().regid })
-        }
-        |
+        @*@if (Model != null && Model.Any())
+               {
+                    @Html.ActionLink("Empty Cart", "EmptyCart" ,new { id=Model.First().regid})
+               }|
+            @if (Model != null && Model.Any())
+               {
+                    @Html.ActionLink("Update Cart", "DonationAmount", new { id = Model.First().regid })
+            }*@
+
         @if (Model != null)
         {
             @Html.ActionLink("Proceed to Checkout", "SendMail", new { id = Model.First().regid })

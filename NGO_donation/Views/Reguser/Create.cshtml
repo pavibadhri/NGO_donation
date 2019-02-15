@@ -4,17 +4,37 @@
     ViewBag.Title = "Create";
 }
 
-<h4>PERSONAL INFORMATION</h4>
+<h2 style="color:blueviolet;margin-left:200px;">PERSONAL INFORMATION</h2>
+
+<style type="text/css">
+    .btn-black {
+        background-color: #000;
+        color: #FFF;
+    }
+
+        .btn-black:hover {
+            color: #FFF;
+        }
+
+    .hrtt {
+        style ="margin-left: 300px;";
+    }
+
+    .hover {
+        color: red;
+    }
+</style>
 
 @using (Html.BeginForm())
 {
-
-    <div class="form-horizontal">
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal" style="color: black; background-color: lightgray;align-content:center;padding-left:100px;">
         @*<h4>tbl_registeruserdetail</h4>*@
         <hr />
         @Html.ValidationSummary(true)
 
-        <div class="form-group">
+        <div class="form-group" style="margin-left: 300px;text-align:left;">
+            @Html.HiddenFor(model => model.regid)
             @Html.Label("firstname", "FIRST NAME", new { @class = "control-label col-md-2" })
             @*@Html.LabelFor(model => model.firstname, new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
@@ -23,25 +43,25 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" style="margin-left: 300px; text-align: left;">
             @Html.Label("lastname", "LAST NAME", new { @class = "control-label col-md-2" })
             @*@Html.LabelFor(model => model.lastname, new { @class = "control-label col-md-2" })*@
-            <div class="col-md-10">
+            <div class="col-md-8">
                 @Html.EditorFor(model => model.lastname)
                 @Html.ValidationMessageFor(model => model.lastname)
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" style="margin-left: 300px; text-align: left;">
             @Html.Label("cma_", "CMA #", new { @class = "control-label col-md-2" })
             @*@Html.LabelFor(model => model.cma_, new { @class = "control-label col-md-2" })*@
-            <div class="col-md-10">
+            <div class="col-md-5">
                 @Html.EditorFor(model => model.cma_)
                 @Html.ValidationMessageFor(model => model.cma_)
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" style="margin-left: 300px; text-align: left; ">
             @Html.Label("phone", "PHONE", new { @class = "control-label col-md-2" })
             @* @Html.LabelFor(model => model.phone, new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
@@ -50,7 +70,7 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" style="margin-left: 300px; text-align: left;">
             @*@Html.LabelFor(model => model.emailid, new { @class = "control-label col-md-2" })*@
             @Html.Label("emailid", "EMAIL ADDRESS", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -59,7 +79,7 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" style="margin-left: 300px; text-align: left;">
             @*@Html.LabelFor(model => model.address1, new { @class = "control-label col-md-2" })*@
             @Html.Label("address1", "ADDRESS 1", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -68,7 +88,7 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" style="margin-left: 300px; text-align: left;">
             @Html.Label("address2", "ADDRESS 2", new { @class = "control-label col-md-2" })
             @*@Html.LabelFor(model => model.address2, new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
@@ -77,7 +97,7 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" style="margin-left: 300px; text-align: left;">
             @Html.Label("city", "CITY", new { @class = "control-label col-md-2" })
             @*@Html.LabelFor(model => model.city, new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
@@ -86,7 +106,7 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" style="margin-left: 300px; text-align: left;">
             @Html.Label("state", "STATE", new { @class = "control-label col-md-2" })
             @*@Html.LabelFor(model => model.state, new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
@@ -95,7 +115,7 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" style="margin-left: 300px; text-align: r;">
             @Html.Label("zipcode", "ZIP/POSTAL CODE", new { @class = "control-label col-md-2" })
             @*@Html.LabelFor(model => model.zipcode, new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
@@ -104,7 +124,7 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" style="margin-left: 300px; text-align: left;">
             @Html.Label("country", "COUNTRY", new { @class = "control-label col-md-2" })
             @*@Html.LabelFor(model => model.country, new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
@@ -113,7 +133,7 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group " style="margin-left: 300px; text-align: left;">
             @Html.Label("urbanization", "URBANIZATION", new { @class = "control-label col-md-2" })
             @*@Html.LabelFor(model => model.urbanization, new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
@@ -123,21 +143,20 @@
         </div>
         <br />
         <br />
-        <div class="form-group">
+        <div class="form-group" style="margin-left: 300px;">
             <div class="col-md-offset-2 ">
-                <input type="button" value="CANCEL" class="btn btn-default" onclick="location.href='@Url.Action("Index","Reguser")';" />
+                <input type="button" value="CANCEL" class="btn btn-default" style="color: white; background-color: blueviolet;" onclick="location.href='@Url.Action("Index","User")';" />
 
                 @*<div class="col-md-offset-2 col-md-10">*@
-                <input type="submit" value="CONTINUE" class="btn btn-default" />
+                <input type="submit" value="CONTINUE" class="btn btn-default" style="color: white; background-color: blueviolet;" />
                 @*</div>*@
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
+@*<div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
 
 

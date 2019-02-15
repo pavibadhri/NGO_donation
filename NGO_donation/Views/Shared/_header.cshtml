@@ -1,9 +1,12 @@
 ﻿<!doctype html>
 
-<header style="background-color:gainsboro">
-    <h4>
-        NGO
-        <div style="text-align:right">
+<header style="background-color: #dff0d8;">
+
+    <div>
+        <p style="margin-left:10px;float:left;font-size:large;font-family:'Times New Roman', Times, serif;font-style:italic;font-weight:bold;font-stretch:wider;">
+            NGO<img src="~/Content/ImgDonate.jpg" style="width:100px;" />Helping Hands are better than Praying Lips!
+        </p>
+        <p style="text-align:right">
             @if (Session["firstname"] != null)
             {
                 <label>
@@ -25,9 +28,13 @@
             }
             )
             @Html.ActionLink("Log out", "Index", "Home")
-        </div>
-    </h4>
+            <img src="~/Content/UserIcon.png" style="width:50px" />
+
+        </p>
+    </div>
 </header>
+
+
 
 
 
