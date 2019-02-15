@@ -90,9 +90,7 @@ namespace NGO_donation.Controllers
                         db.Entry(querydata).State = EntityState.Modified;
                         db.SaveChanges();
                     }
-
                 }
-
                 return RedirectToAction("GetOrderSummary", "Donationtype");
             }
             return View(model);
@@ -136,17 +134,12 @@ namespace NGO_donation.Controllers
         {
             if (id != null)
             {
-                var model = db.tbl_donationdetails.ToList();
-                foreach (var data in model)
+                int regid = Convert.ToInt32(Session["RegId"].ToString());
+                var query = db.tbl_donationdetails.Where(m => m.regid == regid);
+                foreach (var data in query)
                     db.tbl_donationdetails.Remove(data);
                 db.SaveChanges();
                 ViewData["Empty"] = "No data items.";
-            }
-            else
-            {
-                int regid = Convert.ToInt32(Session["RegId"].ToString());
-                var query = db.tbl_donationdetails.Where(m => m.regid == regid);
-                return View(query.ToList());
             }
             return View("GetOrderSummary");
         }
@@ -159,8 +152,8 @@ namespace NGO_donation.Controllers
                 var data = db.tbl_registeruserdetail.Where(m => m.regid == id).SingleOrDefault();
                 message.To.Add(new MailAddress(data.emailid));
                 message.From = new MailAddress("khyatish1989@gmail.com");
-                message.Subject = "Order";
-                string Body = "Your Order is placed";
+                message.Subject = "Order NGO Donation";
+                string Body = "Your Order has been placed";
                 message.Body = Body;
                 message.IsBodyHtml = true;
                 SmtpClient smtp = new SmtpClient

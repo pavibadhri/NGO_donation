@@ -53,21 +53,6 @@ namespace NGO_donation.Controllers
             return View(tbl_user.ToPagedList(pageNumber, pageSize));
         }
 
-        // GET: UserManage/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            tbl_user tbl_user = db.tbl_user.Find(id);
-            if (tbl_user == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tbl_user);
-        }
-
         // GET: UserManage/Create
         public ActionResult Create()
         {

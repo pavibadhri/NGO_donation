@@ -61,6 +61,15 @@ namespace NGO_donation.Controllers
             return View(donations.ToPagedList(pageNumber, pageSize));
         }
 
+        public ActionResult RemoveRecords()
+        {
+            var model = db.tbl_donationdetails.ToList();
+            foreach (var data in model)
+                db.tbl_donationdetails.Remove(data);
+            db.SaveChanges();
+            return RedirectToAction("Index", "Donationdetails");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

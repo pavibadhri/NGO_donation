@@ -182,6 +182,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\1.jpg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -189,6 +190,7 @@
     <Content Include="Content\ImgAddUser.jpg" />
     <Content Include="Content\ImgDonate.jpg" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\registration-img.jpg" />
     <Content Include="Content\UserIcon.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -242,7 +244,6 @@
     <Content Include="Views\Shared\_RegularUserLayout.cshtml" />
     <Content Include="Views\UserManage\Create.cshtml" />
     <Content Include="Views\UserManage\Delete.cshtml" />
-    <Content Include="Views\UserManage\Details.cshtml" />
     <Content Include="Views\UserManage\Edit.cshtml" />
     <Content Include="Views\UserManage\Index.cshtml" />
     <Content Include="Views\Reguser\Create.cshtml" />

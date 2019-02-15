@@ -10,10 +10,11 @@
 
 @using (Html.BeginForm("Index", "Donationdetails", FormMethod.Get))
 {
-    <p>
-        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
-        <input type="submit" value="Search" />
-    </p>
+<p>
+    Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+    <input type="submit" value="Search" />
+    &nbsp;&nbsp;&nbsp;&nbsp;@Html.ActionLink("Delete All Records", "RemoveRecords")
+</p>
 }
 <table class="table">
     <tr>
@@ -34,20 +35,20 @@
 
     @foreach (var item in Model)
     {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.tbl_registeruserdetail.firstname) @Html.DisplayFor(modelItem => item.tbl_registeruserdetail.lastname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.totalamount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tbl_donationtype.donationname)
-        </td>
-    </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.tbl_registeruserdetail.firstname) @Html.DisplayFor(modelItem => item.tbl_registeruserdetail.lastname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.totalamount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tbl_donationtype.donationname)
+            </td>
+        </tr>
     }
 
 </table>

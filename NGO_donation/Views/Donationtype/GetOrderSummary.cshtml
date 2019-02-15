@@ -6,55 +6,42 @@
 
 <h3 style="padding-top: 6px; height: 40px; color: white; background-color: coral; text-align: center;">OrderSummary</h3>
 
-@*<p>
-        @Html.ActionLink("Create New", "Create")
-    </p>*@
 @using (Html.BeginForm("EmptyCart", "User", FormMethod.Post))
 {
     <table class="table" style="border:1px solid black;">
+
         <tr>
-            <th>
-                <div style="font-family: sans-serif; font-size: initial; font-weight: underline; font-style: italic;">
-                    @*@Html.DisplayNameFor(model => model.recurgift)*@
-                    @Html.DisplayName("ITEM DESCRIPTION")
-                </div>
+            <th style="padding-left: 40px;"></th>
+            <th style="font-family: sans-serif; font-size: initial; font-weight: underline; font-style: italic;">
+
+                @Html.DisplayName("ITEM DESCRIPTION")
 
             </th>
-            <th>
-                <div style="font-family: sans-serif; font-size: initial; font-weight: underline; font-style: italic;margin-left:166px;">
-                    @*@Html.DisplayNameFor(model => model.quantity)*@
-                    @Html.DisplayName("QUANTITY")
-                </div>
+            <th style="font-family: sans-serif; font-size: initial; font-weight: underline; font-style: italic; margin-left: 166px; width: 116px;">
+
+                @Html.DisplayName("QUANTITY")
+
             </th>
-            <th>
-                <div style="font-family: sans-serif; font-size: initial; font-weight: underline; font-style: italic;">
-                    @*@Html.DisplayNameFor(model => model.price)*@
-                    @Html.DisplayName("PRICE")
-                </div>
+            <th style="font-family: sans-serif; font-size: initial; font-weight: underline; font-style: italic;padding-left:90px;">
+
+                @Html.DisplayName("PRICE")
+
             </th>
-            <th>
-                <div style="font-family: sans-serif; font-size: initial; font-weight: underline; font-style: italic;">
-                    @*@Html.DisplayNameFor(model => model.totalamount)*@
-                    @Html.DisplayName("TOTAL")
-                </div>
+            <th style="font-family: sans-serif; font-size: initial; font-weight: underline; font-style: italic; padding-left: 75px;">
+
+                @Html.DisplayName("TOTAL")
+
             </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.date)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.tbl_registeruserdetail.firstname)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.tbl_donationtype.donationname)
-                </th>
-                <th></th>*@
+
         </tr>
         @if (Model == null)
         {
             <tr>
                 <td>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     @ViewData["Empty"]
                 </td>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -66,7 +53,8 @@
             foreach (var item in Model)
             {
                 <tr>
-                    <td style="font-family: verdana sans-serif; font-weight: bolder; font-size: 15px; color: green; ">
+                    <td><img src="~/content/1.jpg" style="width: 122px; height: 92px; padding-left: 40px;" /></td>
+                    <td style="font-family: verdana sans-serif; font-weight: bolder; font-size: 14px; color:  green; ">
                         @Html.DisplayFor(modelItem => item.tbl_donationtype.donationname)
                     </td>
                     <td class="colorquantity">
@@ -77,67 +65,55 @@
 
 
                     </td>
-                    <td>
+                    <td style="padding-left: 90px;">
                         @Html.DisplayFor(modelItem => item.price)
                     </td>
-                    <td>
+                    <td style="padding-left: 90px;">
 
                         @Html.DisplayFor(modelItem => item.totalamount)
                     </td>
-                    @*<td>
-                            @Html.DisplayFor(modelItem => item.date)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.tbl_registeruserdetail.firstname)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.tbl_donationtype.donationname)
-                        </td>*@
-
                 </tr>
 
             }
-            <tr>
-                <td>
-                    @if (Model != null && Model.Any())
-                    {
-                        @Html.ActionLink("Empty Cart", "EmptyCart", new { id = Model.First().regid })
-                    }
-                    @if (Model != null && Model.Any())
-                    {
-                        @Html.ActionLink("Update Cart", "DonationAmount", new { id = Model.First().regid })
-                    }
-                </td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+
         }
+
         <tr>
             <td></td>
+            <td>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                @if (Model != null && Model.Any())
+                {
+                    @Html.ActionLink("Empty Cart", "EmptyCart", new { id = Model.First().regid }, new { @style = "color: orangered;font-weight: 600;text-decoration: underline;" })
+
+                } &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                @if (Model == null)
+                {
+                    @Html.ActionLink("Back to Donation Amount", "DonationAmount", "User", new { @style = "MARGIN-LEFT: -60PX;TEXT-DECORATION: UNDERLINE;COLOR: CORAL;" })
+                }
+                @if (Model != null && Model.Any())
+                {
+                    @Html.ActionLink("Update Cart", "DonationAmount", new { id = Model.First().regid }, new { @style = "color: orangered;font-weight: 600;text-decoration: underline;" })
+                }
+
+
+            </td>
             <td></td>
-            <td></td>
+            <td>
+                @if (Model != null)
+                {
+                    @Html.ActionLink("Proceed to Checkout", "SendMail", new { id = Model.First().regid }, new { @style = "color: orangered;font-weight: 600;text-decoration: underline;" })
+                }
+            </td>
             <td>
                 @if (ViewData["Totalamount"] != null)
                 {
-                    <label>Payment Amount:</label>@ViewData["Totalamount"]
+                    <label style="color:purple;">Total Donation Amount:</label><span style="font-weight: 700;color:green;">@ViewData["Totalamount"]</span>
                 }
-            </td>
-        </tr>
-        @if (Model == null)
-               {
-                    @Html.ActionLink("Enter Amount", "DonationAmount")
-               }
-            @*@if (Model != null && Model.Any())
-               {
-                    @Html.ActionLink("Update Cart", "DonationAmount", new { id = Model.First().regid })
-            }*@
+        </td>
 
-        @if (Model != null)
-        {
-            @Html.ActionLink("Proceed to Checkout", "SendMail", new { id = Model.First().regid })
-        }
+    </tr>
 
-    </table>
+</table>
 }
 
